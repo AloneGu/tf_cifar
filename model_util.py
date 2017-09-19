@@ -161,21 +161,21 @@ def model():
         weights = _variable_with_weight_decay('weights', shape=[dim, 384], stddev=0.04, wd=0.004)
         biases = _variable_on_cpu('biases', [384], tf.constant_initializer(0.1))
         local3 = tf.nn.relu(tf.matmul(reshape, weights) + biases, name=scope.name)
-    tf.summary.histogram('Fully connected layers/fc1', local3)
-    tf.summary.scalar('Fully connected layers/fc1', tf.nn.zero_fraction(local3))
+    tf.summary.histogram('Fully_connected_layers/fc1', local3)
+    tf.summary.scalar('Fully_connected_layers/fc1', tf.nn.zero_fraction(local3))
 
     with tf.variable_scope('fully_connected2') as scope:
         weights = _variable_with_weight_decay('weights', shape=[384, 192], stddev=0.04, wd=0.004)
         biases = _variable_on_cpu('biases', [192], tf.constant_initializer(0.1))
         local4 = tf.nn.relu(tf.matmul(local3, weights) + biases, name=scope.name)
-    tf.summary.histogram('Fully connected layers/fc2', local4)
-    tf.summary.scalar('Fully connected layers/fc2', tf.nn.zero_fraction(local4))
+    tf.summary.histogram('Fully_connected_layers/fc2', local4)
+    tf.summary.scalar('Fully_connected_layers/fc2', tf.nn.zero_fraction(local4))
 
     with tf.variable_scope('output') as scope:
         weights = _variable_with_weight_decay('weights', [192, _NUM_CLASSES], stddev=1 / 192.0, wd=0.0)
         biases = _variable_on_cpu('biases', [_NUM_CLASSES], tf.constant_initializer(0.0))
         softmax_linear = tf.add(tf.matmul(local4, weights), biases, name=scope.name)
-    tf.summary.histogram('Fully connected layers/output', softmax_linear)
+    tf.summary.histogram('Fully_connected_layers/output', softmax_linear)
 
     global_step = tf.Variable(initial_value=0, name='global_step', trainable=False)
     y_pred_cls = tf.argmax(softmax_linear, dimension=1)
