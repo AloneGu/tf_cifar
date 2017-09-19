@@ -24,6 +24,6 @@ open your browser 0.0.0.0:6006
 
 you should see image like   :ghost:  :ghost:  :
 
-![example](0919_1.jpg)
+![example](img.png)
 
 Done!!!
